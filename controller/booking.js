@@ -78,7 +78,7 @@ module.exports = (post_data,callback) =>{
     }
 
     request.post(issue,(err,res,ht)=>{
-     callback("done")
-    }
+     callback("done");
+   })
   })
 };

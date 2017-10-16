@@ -99,11 +99,12 @@ module.exports = (post_data,callback) => {
                 data = {
                   result:"failed"
                 }
+                callback(data)
               } else {
                 data = {
                   result:"failed"
                 }
-
+                callback(data)
               }
 
             }

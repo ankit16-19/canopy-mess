@@ -1,6 +1,6 @@
 const request = require('request');
 const login = require('./login');
-const booking = require('/booking');
+const booking = require('./booking');
 
 
 module.exports = function(app){
