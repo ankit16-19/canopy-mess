@@ -24,7 +24,7 @@ module.exports = (post_data,callback) => {
         request.post(option, (error, response, body) =>{
           if (!error) {
             // if no error
-            let location = response.headers['location']
+            var location = response.headers['location']
             if (location == "http://172.16.2.200:8080/rosei/userLoggedconsumer.jsp") {
               // user successfuly logged-in
               if (post_data.mode == 'test') {
@@ -50,10 +50,10 @@ module.exports = (post_data,callback) => {
                   $('#table1 table').find('tr').filter(function(){
 
                     if(i>=1){
-                      let day = $(this).find('th').text();
-                      let brkfast = $(this).find('td').eq(0).text();
-                      let lnch = $(this).find('td').eq(1).text();
-                      let dinnr = $(this).find('td').eq(2).text();
+                      var day = $(this).find('th').text();
+                      var brkfast = $(this).find('td').eq(0).text();
+                      var lnch = $(this).find('td').eq(1).text();
+                      var dinnr = $(this).find('td').eq(2).text();
                       data.mess1.push({
                         'day':day,
                         'brkfast':brkfast,
@@ -68,10 +68,10 @@ module.exports = (post_data,callback) => {
                    i = 0
                   $('#table2 table').find('tr').filter(function(){
                     if(i>=1){
-                      let day = $(this).find('th').text();
-                      let brkfast = $(this).find('td').eq(0).text();
-                      let lnch = $(this).find('td').eq(1).text();
-                      let dinnr = $(this).find('td').eq(2).text();
+                      var day = $(this).find('th').text();
+                      var brkfast = $(this).find('td').eq(0).text();
+                      var lnch = $(this).find('td').eq(1).text();
+                      var dinnr = $(this).find('td').eq(2).text();
                       data.mess2.push({
                         'day':day,
                         'brkfast':brkfast,
