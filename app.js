@@ -4,10 +4,8 @@ var app = express();
 const morgan = require('morgan'); // Request logger
 const bodyparser = require('body-parser');
 
-
-
 // file
-const rosei = require('./controller/rosei') // hibiscus unofficial api
+const rosei = require('./controller/rosei'); // hibiscus unofficial api
 
 
 //middlewares
