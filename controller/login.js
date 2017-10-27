@@ -1,14 +1,26 @@
 const request = require('request');
 const cheerio = require('cheerio');
+var Cryptr = require('cryptr'),
+    cryptr = new Cryptr('myTotalySecretKey');
 
 module.exports = (post_data,callback) => {
+
+    var pass;
+
+    if(post_data.pass == 'encrypt'){
+        var  decryptedString = cryptr.decrypt(post_data.pwd);
+        pass = decryptedString;
+    }else{
+        pass = post_data.pw
+    }
+
   var option =
   {
         url:'http://172.16.2.200:8080/rosei/Servlet/LoginServlet',
         form:
         {
                 un:post_data.un,
-                pw:post_data.pw,
+                pw:pass,
                 mode:post_data.mode,
                 submit:'Login'
         },
@@ -18,16 +30,17 @@ module.exports = (post_data,callback) => {
   }
   var data = {
     mess1:[],
-    mess2:[],
+    mess2:[]
   };
 
         request.post(option, (error, response, body) =>{
+            console.log(option);
           if (!error) {
             // if no error
             var location = response.headers['location']
-            if (location == "http://172.16.2.200:8080/rosei/userLoggedconsumer.jsp") {
+            if (location === "http://172.16.2.200:8080/rosei/userLoggedconsumer.jsp") {
               // user successfuly logged-in
-              if (post_data.mode == 'test') {
+              if (post_data.mode === 'test') {
                 // testmode //success
                 data = {
                   result:"success"
@@ -93,16 +106,17 @@ module.exports = (post_data,callback) => {
 
             } else {
               // http://172.16.2.200:8080/rosei/invalidUser.jsp //invalidUser
+
               if (post_data.mode =="test") {
                 // test mode //failed
 
                 data = {
-                  result:"failed"
+                  result:"testFailed"
                 }
                 callback(data)
               } else {
                 data = {
-                  result:"failed"
+                  result:"loginFailed"
                 }
                 callback(data)
               }

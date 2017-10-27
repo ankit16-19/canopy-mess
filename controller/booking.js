@@ -1,20 +1,30 @@
 const request = require('request');
+var Cryptr = require('cryptr'),
+    cryptr = new Cryptr('myTotalySecretKey');
 
 module.exports = (post_data,callback) =>{
+
+    var pass;
+
+    if(post_data.pass == 'encrypt'){
+        var  decryptedString = cryptr.decrypt(post_data.pwd);
+        pass = decryptedString;
+    }else{
+        pass = post_data.pwd
+    }
   var login =
   {
         url:'http://172.16.2.200:8080/rosei/Servlet/LoginServlet',
-        form:
-        {
+        form:{
                 'un':post_data.un,
-                'pw':post_data.pw,
+                'pw':pass,
                 'mode':post_data.mode,
                 'submit':'Login'
         },
         headers:
         {
         }
-  }
+  };
 
   request.post(login,(error,response,html)=>{
     var issue =
