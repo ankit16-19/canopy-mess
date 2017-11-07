@@ -2,7 +2,7 @@ const request = require('request');
 var Cryptr = require('cryptr'),
     cryptr = new Cryptr('myTotalySecretKey');
 
-module.exports = (post_data,callback) =>{
+module.exports = (post_data, callback) =>{
 
     var pass;
 
@@ -10,7 +10,7 @@ module.exports = (post_data,callback) =>{
         var  decryptedString = cryptr.decrypt(post_data.pwd);
         pass = decryptedString;
     }else{
-        pass = post_data.pwd
+        pass = post_data.pw
     }
   var login =
   {
@@ -27,6 +27,7 @@ module.exports = (post_data,callback) =>{
   };
 
   request.post(login,(error,response,html)=>{
+
     var issue =
     {
           url:'http://172.16.2.200:8080/rosei/Servlet/ControllerIssueCoupon',
@@ -83,12 +84,13 @@ module.exports = (post_data,callback) =>{
           },
           headers:
           {
-            cookie:response.headers['set-cookie'][0].slice(0,43)
+            cookie: response.headers['set-cookie'][0].slice(0,43),
+              referer:"http://172.16.2.200:8080/rosei/issuecoupon.jsp?mess=m002"
           }
     }
 
     request.post(issue,(err,res,ht)=>{
-     callback("done");
+     callback(res);
    })
   })
 };
