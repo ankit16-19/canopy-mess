@@ -24,7 +24,7 @@ module.exports = function(app){
     app.post('/booking',(req,res) => {
 
       booking(req.body, (data) => {
-        res.json(data);
+        res.send(data);
       })
     });
 
