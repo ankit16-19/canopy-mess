@@ -7,7 +7,7 @@ module.exports = (post_data, callback) => {
     var pass;
 
     if(post_data.pass == 'encrypt'){
-        var  decryptedString = cryptr.decrypt(post_data.pwd);
+        var  decryptedString = cryptr.decrypt(post_data.pw);
         pass = decryptedString;
     }else{
         pass = post_data.pw
