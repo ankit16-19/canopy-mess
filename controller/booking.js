@@ -83,29 +83,6 @@ module.exports = (post_data, callback) => {
                                   sunbfmt:post_data.sunbfmt,
                                   sunlunmt:post_data.sunlunmt,
                                   sundinmt:post_data.sundinmt,
-
-                                  // monbf:post_data.monbf,
-                                  // monlun:post_data.monlun,
-                                  // mondin:post_data.mondin,
-                                  // tuebf:post_data.tuebf,
-                                  // tuelun:post_data.tuelun,
-                                  // tuedin:post_data.tuedin,
-                                  // wedbf:post_data.wedbf,
-                                  // wedlun:post_data.wedlun,
-                                  // weddin:post_data.weddin,
-                                  // thubf:post_data.thubf,
-                                  // thulun:post_data.thulun,
-                                  // thudin:post_data.thudin,
-                                  // fribf:post_data.fribf,
-                                  // frilun:post_data.frilun,
-                                  // fridin:post_data.fridin,
-                                  // satbf:post_data.satbf,
-                                  // satlun:post_data.satlun,
-                                  // satdin:post_data.satdin,
-                                  // sunbf:post_data.sunbf,
-                                  // sunlun:post_data.sunlun,
-                                  // sundin:post_data.sundin,
-
                                   check:post_data.check
                               },
                           headers:
@@ -123,9 +100,9 @@ module.exports = (post_data, callback) => {
                               var entity  = days[i]+ times[j];
                               issue['form'][entity] = post_data[entity]
                           }
-                          console.log(issue);
                       }
                   }
+                  console.log(issue);
                   request.post(issue, function (ef,rf,hf) {
 
                       console.log(rf.headers['location'])
