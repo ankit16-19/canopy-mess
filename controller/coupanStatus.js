@@ -60,7 +60,7 @@ module.exports = function (post_data,callback) {
                                 if(i === 0 || i === 9){
                                     i++;
                                 }else{
-                                    console.log($(this).html());
+                                    //console.log($(this).html());
                                     var date = $(this).find('th').text().replace(/\n/g,"").replace(/\t/g,"").replace(" ","");
                                     var value = $(this).find('td').find('input').attr('value');
                                     data.extraData.push({
